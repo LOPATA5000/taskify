@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: taskify-db
+    environment:
+      POSTGRES_DB: taskify
+      POSTGRES_USER: taskify
+      POSTGRES_PASSWORD: taskify
+    ports:
+      - "5432:5432"
+    volumes:
+      - taskify_db:/var/lib/postgresql/data
+
+volumes:
+  taskify_db:
