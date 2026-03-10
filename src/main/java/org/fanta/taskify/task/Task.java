@@ -37,4 +37,12 @@ public class Task {
         this.updatedAt = Instant.now();
     }
 
+    @PrePersist
+    void onCreate() {
+        Instant now = Instant.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+        if (this.status == null) this.status = TaskStatus.TODO;
+    }
+
 }
