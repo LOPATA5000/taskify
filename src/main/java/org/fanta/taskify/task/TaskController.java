@@ -1,5 +1,6 @@
 package org.fanta.taskify.task;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class TaskController {
     }
 
     @PostMapping()
-    public Task create(@RequestBody Task task) {
-        return service.create(task);
+    public Task create(@Valid @RequestBody TaskRequest request) {
+        return service.create(request);
     }
 
     @GetMapping("/{id}")

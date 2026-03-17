@@ -11,12 +11,18 @@ public class TaskService {
 
     private final TaskRepository repo;
 
-    public Task create(Task task) {
+    public Task create(TaskRequest request) {
+        Task task = new Task();
+        task.setTitle(request.title());
+        task.setDescription(request.description());
+        task.setStatus(request.status());
+
+
         return repo.save(task);
     }
 
-    public Task getById(Long id){
-       return repo.findById(id)
+    public Task getById(Long id) {
+        return repo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Task not found: " + id));
     }
 
