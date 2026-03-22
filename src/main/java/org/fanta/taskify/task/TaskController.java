@@ -1,6 +1,7 @@
 package org.fanta.taskify.task;
 
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class TaskController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public Task create(@Valid @RequestBody TaskRequest request) {
         return service.create(request);
     }
@@ -35,6 +37,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
